@@ -1,6 +1,6 @@
 <?php
-   seassion_start();
-   if($_SEASSION['username'] == null){
+   session_start();
+   if($_SESSION['username'] == null){
     header('Location: ../index.php');
    }
    $con = mysqli_connect('localhost' , 'root' , '' , 'webadvance') or die('Khong the ket noi toi database');
@@ -16,6 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    img {
+     width: 600px;
+     height: 200px;
+     object-fit: contain;
+}
+</style>
 <body>
     <h3>Danh sach Admin</h3>
     <table>
@@ -27,9 +34,9 @@
         </tr>
         <?php
         while($row = mysqli_fetch_array($querry , MYSQLI_ASSOC)){
-            $id = $row['id']
-            $user = $row['username']
-            $pass = $row['password']
+            $id = $row['id'];
+            $user = $row['username'];
+            $pass = $row['password'];
         ?>
         <tr>
             <td><?php echo $id ?></td>
@@ -63,7 +70,8 @@
         ?>
         <tr>
             <td><?php echo $id ?></td>
-            <td><?php echo $hinhanh ?></td>
+            <td>
+                <img src="<?php echo $hinhanh ?>" alt="<?php echo $mota ?>"></td>
             <td><?php echo $mota ?></td>
             <td><?php echo $gia ?></td>
             <td><a href="SP/sua.php?id=<?php echo $id ;?>">Sua</a></td>
